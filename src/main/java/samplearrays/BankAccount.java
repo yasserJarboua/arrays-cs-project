@@ -5,25 +5,42 @@ public class BankAccount {
     String name;
     double currentBalance;
     //TO-DO: Initialize an Array with 1000 in size that stores Double called 'transactions' to keep track of the user's transactions
+    Double transactions[]=new Double[1000];
+    int counter =0;
 
     public BankAccount(String name, int startingBalance){
 
     }
 
     public void deposit(double amount){
-
+        if (amount<0){
+            System.out.println("Unsuccessful deposit");
+        }else {
+            currentBalance+=amount;
+            transactions[counter]=amount;
+            counter++;
+        }
     }
 
     public void withdraw(double amount){
-
+        if (amount>currentBalance){
+            System.out.println("Unsuccessful withdraw");
+        }else {
+            currentBalance-=amount;
+            transactions[counter]=-amount;
+            counter++;
+        }
     }
 
     public void displayTransactions(){
-
+        System.out.println("Your transactions : \n");
+        for(int i=0;i<counter;i++){
+            System.out.println(transactions[i]+"\n");
+        }
     }
 
     public void displayBalance(){
-
+        System.out.println("Your current balance is : "+currentBalance);
     }
 
     public static void main(String[] args) {
