@@ -23,7 +23,7 @@ public class BankAccount {
     }
 
     public void withdraw(double amount){
-        if (amount>currentBalance){
+        if (amount>currentBalance || amount<0){
             System.out.println("Unsuccessful withdraw");
         }else {
             currentBalance-=amount;

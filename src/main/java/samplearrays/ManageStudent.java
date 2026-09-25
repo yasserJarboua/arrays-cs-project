@@ -42,7 +42,7 @@ public class ManageStudent {
     public static Student findStudentByName(Student[] students, String name) {
         Student s=null;
         for(Student std:students){
-            if (std.getName()==name){
+            if (std.getName().equals(name)){
                 s=std;
             }
         }
@@ -51,20 +51,14 @@ public class ManageStudent {
 
     // 6) Sort Students by Grade (descending)
     public static void sortByGradeDesc(Student[] students) {
-        Arrays.sort(students);
-        Student tmp;
-        for(int i=0;i<students.length;i++){
-            tmp=students[i];
-            students[i]=students[students.length-i-1];
-            students[students.length-i-1]=tmp;
-        }
+        Arrays.sort(students,(s1,s2)->s2.getGrade()-s1.getGrade());
     }
 
     // 7) Print High Achievers (grade >= 15)
     public static void printHighAchievers(Student[] students) {
         for(Student std:students){
             if (std.getGrade()>=15){
-                std.toString();
+                System.out.println(std.toString());
             }
         }
     }
@@ -84,7 +78,7 @@ public class ManageStudent {
     public static boolean hasDuplicateNames(Student[] students) {
         for (int i=0;i<students.length;i++){
             for(int j=i+1;j<students.length;j++){
-                if(students[i].getName()==students[j].getName()){
+                if(students[j].getName().equals(students[i].getName()) ){
                     System.out.println("Duplicates found");
                     return true;
                 }
@@ -112,6 +106,11 @@ public class ManageStudent {
         arr[2]=new Student(3,"Dina",21);
         arr[3]=new Student(4,"Mohamed",20,19);
         arr[4]=new Student(5,"Adam",19,18);
+
+        arr[1].setAge(22);
+        arr[1].setGrade(14);
+        arr[0].setGrade(13);
+        arr[2].setGrade(12);
 
         // Print all
         System.out.println("== All Students ==");
@@ -151,8 +150,33 @@ public class ManageStudent {
 
         // 10) Append new student
         Student s=new Student(6,"Nizare",19,17);
-        appendStudent(arr,s);
-
+        arr=appendStudent(arr,s);
+        // 11)
+        Student school[][]=new Student[2][3];
+        school[0][0]=arr[0];
+        school[0][1]=arr[1];
+        school[0][2]=arr[2];
+        school[1][0]=arr[3];
+        school[1][1]=arr[4];
+        school[1][2]=arr[5];
+        for(int i=0;i<school.length;i++){
+            System.out.println("The students of the class number "+(i+1)+" are :\n");
+            for(int j=0;j<school[0].length;j++){
+                System.out.println(school[i][j]);
+            }
+            System.out.println("\n");
+        }
+        Student  top=null;
+        for(int i=0;i<school.length;i++){
+            System.out.println("The top students of the class number "+(i+1)+" is :\n");
+            top = school[i][0];
+            for(int j=0;j<school[0].length;j++){
+                if (school[i][j].getGrade()>top.getGrade()){
+                    top=school[i][j];
+                }
+            }
+            System.out.println(top+"\n");
+        }
     }
 }
 

@@ -30,7 +30,7 @@ public class DogShelter {
     // Add count to a given index
     public static void addBreed(int index, int count) {
         // add you code here
-        dogCounts[index]=count;
+        dogCounts[index]+=count;
 
     }
 
@@ -45,7 +45,7 @@ public class DogShelter {
     public static void displayDogs() {
         // add your code
           //  System.out.println("Breed " + i + " has " + dogCounts[i] + " dogs.");
-        for(int i=0;i<=3;i++){
+        for(int i=0;i<3;i++){
             System.out.println("Breed " + i + " has " + dogCounts[i] + " dogs.");
         }
 
